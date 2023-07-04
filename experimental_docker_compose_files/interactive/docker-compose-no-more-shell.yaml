@@ -4,30 +4,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount the Docker socket
       - ./03_maven_tutorial:/03_maven_tutorial  # Mount the directory as a volume
+    privileged: true  # Run the container with privileged access
     command: sh -c "/usr/local/bin/jenkins_init.sh 4"
-
-  jenkins_controller:
-    build: ./03_maven_tutorial
-    depends_on:
-      - interactive_service
-    restart: on-failure
-    command: sleep infinity  # Add this line to keep the container running
-    ports:
-      - "8080:8080"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-      - type: bind
-        source: ./secrets/jenkins_agent_ed
-        target: /run/secrets/SSH_AGENT_KEY
-        read_only: true
-
-  jenkins_agent:
-    build: ./03_maven_tutorial/dockerfiles/agent
-    depends_on:
-      - interactive_service
-    container_name: desktop-jenkins_agent-1
-    environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINh9vuRtWYwIu1gdDTTqUEN6YOqTRrCNo7J37NQwmfaq jh@jh-Modern-14-B5M
-volumes:
-  jenkins_home:

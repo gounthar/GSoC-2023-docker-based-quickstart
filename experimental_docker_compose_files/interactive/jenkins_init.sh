@@ -21,7 +21,7 @@ VAR4L="./03_maven_tutorial"
 DOCKER_COMPOSE="docker compose"
 
 # Function to check if running in Gitpod and modify jenkins.yaml if needed
-# I created this one yesterday but it's not needed after last PR that got merged which solves this issue
+# I created this one yesterday but it's not needed after last PR that got merged which solves this issue 
 check_gitpod() {
     if [ -e /ide/bin/gitpod-code ] && [ -v GITPOD_REPO_ROOT ]; then
         echo "Gitpod detected"
@@ -40,12 +40,12 @@ check_running_tutorials() {
             echo "Another Tutorial is running, Please use ./jenkins_teardown.sh first"
             exit 1
         fi
-    fi
+    fi 
 }
 
 DOCKER_COMPOSE="docker compose"
 
-# Function to generate ssh keys
+# Function to generate ssh keys 
 generate_ssh_keys() {
   local tutorial_path=$1
   echo "generating new ssh keys"
@@ -59,7 +59,10 @@ start_tutorial() {
   $DOCKER_COMPOSE -f "$tutorial_path/docker-compose.yaml" up -d
 }
 
-# if tutorials are already running
+# Check Docker Compose installation
+check_docker_compose
+
+# if tutorials are already running 
 check_running_tutorials
 
 # Determine the tutorial to start based on the provided argument
@@ -85,4 +88,5 @@ echo "$TUTORIAL"
 if [[ -z "$TUTORIAL" ]]; then
     echo "0" >> ./.tutorials_running.txt
 else
-  echo "$
+  echo "$TUTORIAL" >> ./.tutorials_running.txt
+fi
