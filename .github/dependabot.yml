@@ -14,27 +14,35 @@ updates:
       # Ignore updates for dependencies with names containing "github-script"
       - dependency-name: "*github-script*"
 
-# Enable version updates for Docker
+  # Enable version updates for Docker
   - package-ecosystem: docker
     directory: "./00_old_one_from_proposal"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "jenkins/jenkins"
   - package-ecosystem: docker
     directory: "./02_custom_docker_file_connecting_agent_and_controller/dockerfiles"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "jenkins/jenkins"
   - package-ecosystem: docker
     directory: "./03_maven_tutorial"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "jenkins/jenkins"
   - package-ecosystem: docker
     directory: "./03_maven_tutorial/dockerfiles"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "jenkins/jenkins"
   - package-ecosystem: docker
     directory: "./03_maven_tutorial/dockerfiles/agent"
     schedule:
@@ -45,8 +53,5 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
-  - package-ecosystem: docker
-    directory: "./experimental_docker_compose_files/simple-node-js-react-npm-app/node_modules/@surma/rollup-plugin-off-main-thread"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "jenkins/jenkins"
