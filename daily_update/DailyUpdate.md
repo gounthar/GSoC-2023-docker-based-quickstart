@@ -1,6 +1,127 @@
 # Daily Update
+### Date: 04/07/2023 TUESDAY
 
-### Date: 28/06/2032 WEDNESDAY
+**Start Time:** 8:01   
+**End Time:** 12:00++  
+**Hours Worked:** 6h+
+
+**8:01-10:18**
+
+- Received a message from bervinato regarding a draft PR #76 about keygen on Windows with PowerShell.
+- Not familiar with PowerShell at the moment, so it's not a priority.
+- Milestones 0 and 1 are complete.
+- Plan for the day: Edit slides to reduce content and record a presentation.
+- Watched videos on successfully presenting online.
+- Created and updated slides.
+- Practicing and rehearsing the presentation.
+
+**12:45-13:28**
+
+- Started recording.
+- Encountered difficulties with transitions, stuttering, and stopping while talking.
+- Lighting in the space is not optimal.
+- Decided to record sections separately for better control over the content and timing.
+- Introspecting on what needs improvement.
+
+**17:40**
+
+- Reviewed and made improvements to the recorded presentation.
+- Specified timing for each part of the presentation.
+- Planned the content for each section.
+
+**19:52 PM**
+- Discovered a simple-java-maven-app job still present in the Maven folder.
+- Plan to created a new PR to address the issue.
+
+**20:24 PM**
+
+- Created a PR for the issue related to the simple-java-maven-app job.
+- Working on the content for the second section.
+
+**23:42 PM**
+
+- Encountered an error while building the image for the dry run demo.
+- Created a PR to update the `.gitpod.yml` file for the Gitpod issue.
+- Planning to complete the recording and questions today.
+
+
+
+
+### Date: 03/07/2023 MONDAY
+
+**Start Time:** 6:59  
+**End Time:** 12:00++  
+**Hours Worked:** 4h+ (Din't maintain the record very well today approx)
+
+**6:59 AM**
+
+- Three open issues in Milestone 01: #73, #74, #75.
+- Issue #73: Changing "4" to "maven" in the command.
+- Issue #74: Bruno suggests calling the script directly.
+- Issue #75: Bruno suggests getting rid of the experimental_docker_compose_files directory.
+- Planning to work on presentation slides after resolving these issues.
+- Identified a mistake related to a job called "simple-java-maven-app."
+- The mistake was caused by accidentally pushing the prebuild job without checking.
+
+**9:39 AM**
+
+- Continuing work.
+- Spent approximately 1.5 hours working until 13:30.
+- Attended a weekly meeting (approximately 45 minutes).
+- Took a nap.
+
+**17:40 PM**
+
+- Resuming work after the break.
+- Cleared remaining small issues in the Maven Milestone 01.
+- Reviewed presentation slides and identified content to eliminate.
+- Decided to remove endpoints in the "What's the problem?" part, steps in the "How are we solving this?" part, and add a Windows section in the "What's next?" part.
+- Realized the need to add more tutorials.
+
+**12:00++ PM**
+
+- done with the small issues in the maven milestone
+- Planned to implement changes in the slides.
+- Will ask mentors for feedback tomorrow after creating the recorded presentation
+
+
+
+### Date: 29/06/2023 THURSDAY
+
+**Start Time:** 6:42  
+**End Time:** 23:56 PM  
+**Hours Worked:** 5h 30m
+
+**6:42 AM**(1h)
+
+- Reading feedback for PR#70 feature/maven tutorial.
+- Committed changes that include adding fork-and-clone.sh into the jenkins_init.sh file.
+- Added a prompt in jenkins_init.sh to ask if the repository should be forked and cloned.
+- Currently, the prompt is only displayed for the Maven tutorial.
+- Started working on midterm slides.
+
+**17:43 PM**(2h30m)
+
+-Completed Drafted midterm slides.
+
+**19:00 PM - 20:00 PM**(1 Hour)
+
+- One-to-one meeting.
+
+**20:30 PM - 21:00 PM**(30mins)
+
+- Office hours.
+
+**21:28 PM**(30 mins)
+
+- to make changes to fork-and-clone.sh.
+- Will revert the last commit and add "maven" as the name command for `./jenkins_init.`
+- Integrate feedback from mentors in the slides.
+
+
+Too less work today will compensate for this tomorrow.
+
+### Date: 28/06/2023 WEDNESDAY
 
 **Start Time:** 8:35 AM  
 **End Time:** 23:56 PM  
