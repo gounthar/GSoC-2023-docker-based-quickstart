@@ -14,7 +14,7 @@ updates:
       # Ignore updates for dependencies with names containing "github-script"
       - dependency-name: "*github-script*"
 
-  # Enable version updates for Docker
+# Enable version updates for Docker
   - package-ecosystem: docker
     directory: "./00_old_one_from_proposal"
     schedule:
