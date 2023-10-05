@@ -25,7 +25,7 @@ jobs:
 
       - name: Retrieve modified files
         id: changes
-        run: echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_ENV
+        run: echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | tr '\n' ' ')" >> $GITHUB_ENV
 
       - name: Check for Dockerfile and context changes
         run: |
