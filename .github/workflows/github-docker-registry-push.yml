@@ -29,14 +29,14 @@ jobs:
 
       - name: Check for Dockerfile and context changes
         run: |
-          if [[ $(echo "${{ env.FILES }}" | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
+          if [[ $(echo '${{ env.FILES }}' | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
             echo "Dockerfile or context directory has changed."
-            echo Changed files are
+            echo Changed files are 
             echo "${{ env.FILES }}"
           else
             echo "No Dockerfile or context directory changes. Skipping Docker image build and push steps."
-            echo changed files are
-            echo "${{ env.FILES }}"
+            echo changed files are 
+            echo "${{ env.FILES }}"   
             exit 0
           fi
 
