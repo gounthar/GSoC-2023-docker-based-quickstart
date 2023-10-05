@@ -29,6 +29,10 @@ jobs:
 
       - name: Check for Dockerfile and context changes
         run: |
+          # Searches for a specific pattern in the input. The -E option enables extended regular expression syntax.
+          # The pattern "(^|/)Dockerfile($|/)|(^|/)context/" is looking for any line that contains either "Dockerfile"
+          # or "context" as a whole word, and either at the start of the line, at the end of the line, or surrounded by
+          # slashes. This should match any changes to Dockerfiles or context directories.
           if [[ $(echo "${{ env.files }}" | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
             echo "Dockerfile or context directory has changed."
             echo Changed files are 
