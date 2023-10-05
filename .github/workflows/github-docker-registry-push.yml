@@ -23,10 +23,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      -
-        name: Retrieve modified files
+      - name: Retrieve modified files
         id: changes
-        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})"
+        run: echo "files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})" >> $GITHUB_ENV
+
       - name: Check for Dockerfile and context changes
         run: |
           if [[ $(echo "${{ steps.changes.outputs.files }}" | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
@@ -56,9 +56,11 @@ jobs:
           password: ${{ env.GHCR_TOKEN }}
 
       - name: Extract branch name
-        if: contains(steps.changes.outputs.files, 'Dockerfile')
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/} | sed -e 's#/#-#g')"
+        run: |
+          BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | sed -e 's#/#-#g')
+          if [[ "$BRANCH_NAME" == "main" ]]; then BRANCH_NAME=""; fi
+          echo "BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
         id: extract_branch
 
       - name: Extract branch name and set BRANCH environment variable
