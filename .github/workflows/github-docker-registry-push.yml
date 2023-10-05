@@ -29,14 +29,14 @@ jobs:
 
       - name: Check for Dockerfile and context changes
         run: |
-          if [[ $(echo "${{ steps.changes.outputs.files }}" | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
+          if [[ $(echo "${{ env.FILES }}" | grep -E "(^|/)Dockerfile($|/)|(^|/)context/") ]]; then
             echo "Dockerfile or context directory has changed."
-            echo Changed files are 
-            echo "${{ steps.changes.outputs.files }}"
+            echo Changed files are
+            echo "${{ env.FILES }}"
           else
             echo "No Dockerfile or context directory changes. Skipping Docker image build and push steps."
-            echo changed files are 
-            echo "${{ steps.changes.outputs.files }}"   
+            echo changed files are
+            echo "${{ env.FILES }}"
             exit 0
           fi
 
@@ -48,7 +48,7 @@ jobs:
 
       -
         name: Login to GitHub Container Registry
-        if: contains(steps.changes.outputs.files, 'Dockerfile')
+        if: contains(env.FILES, 'Dockerfile')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -72,7 +72,8 @@ jobs:
           
       -
         name: Build and push a simple bundled instance
-        if: contains(steps.changes.outputs.files, '00_old_one_from_proposal/Dockerfile')
+        if: contains(env.FILES, '00_old_one_from_proposal/Dockerfile')
+        if: contains(env.FILES, '00_old_one_from_proposal/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./00_old_one_from_proposal
@@ -81,7 +82,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:00_old_one_${{ env.BRANCH }}
 
       - name: Build and push a simple jenkins controller
-        if: contains(steps.changes.outputs.files, 'dockerfiles/Dockerfile')
+        if: contains(env.FILES, 'dockerfiles/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles
@@ -89,7 +90,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:simple_controller_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for maven tutorial
-        if: contains(steps.changes.outputs.files, 'dockerfiles/maven/Dockerfile')
+        if: contains(env.FILES, 'dockerfiles/maven/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/maven
@@ -97,7 +98,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:maven_agent_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for python tutorial
-        if: contains(steps.changes.outputs.files, 'dockerfiles/python/Dockerfile')
+        if: contains(env.FILES, 'dockerfiles/python/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/python
@@ -105,7 +106,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:python_agent_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for node tutorial
-        if: contains(steps.changes.outputs.files, 'dockerfiles/node/Dockerfile')
+        if: contains(env.FILES, 'dockerfiles/node/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/node
@@ -114,7 +115,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:node_agent_${{ env.BRANCH }}
 
       - name: Build and push the jenkins agent for sidekick tutorial
-        if: contains(steps.changes.outputs.files, 'dockerfiles/sidekick/Dockerfile')
+        if: contains(env.FILES, 'dockerfiles/sidekick/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/sidekick
@@ -123,7 +124,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:sidekick_${{ env.BRANCH }}
 
       - name: Build and push the jenkins agent for multi-branch controller
-        if: contains(steps.changes.outputs.files, '06_multibranch_pipeline/dockerfiles')
+        if: contains(env.FILES, '06_multibranch_pipeline/dockerfiles')
         uses: docker/build-push-action@v5
         with:
           context: ./06_multibranch_pipeline/dockerfiles/
