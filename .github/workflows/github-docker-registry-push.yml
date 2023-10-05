@@ -73,7 +73,6 @@ jobs:
       -
         name: Build and push a simple bundled instance
         if: contains(env.FILES, '00_old_one_from_proposal/Dockerfile')
-        if: contains(env.FILES, '00_old_one_from_proposal/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./00_old_one_from_proposal
