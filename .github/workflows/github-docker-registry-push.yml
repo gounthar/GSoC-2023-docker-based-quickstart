@@ -29,20 +29,15 @@ jobs:
 
       - name: Check for Dockerfile and context changes
         run: |
-          # Checks if any files in the specified environment variable env.files match the patterns for a Dockerfile or
-          # a context directory.
-          # If a match is found, it prints a message indicating the changed file and breaks the loop.  
-          # After the loop, it checks the exit status of the loop using $? .
-          # If the exit status is non-zero (indicating a match was found), it prints a message stating that there are
-          # no Dockerfile or context directory changes and lists the changed files. 
           for file in ${{ env.files }}; do
             if [[ $file =~ (^|/)Dockerfile($|/)|(^|/)context/ ]]; then
               echo "Dockerfile or context directory has changed."
               echo "Changed file: $file"
               break
-          fi
+            fi
           done
-          if (( $? )); then
+        
+          if (( ! $? )); then
             echo "No Dockerfile or context directory changes. Skipping Docker image build and push steps."
             echo "Changed files: ${{ env.files }}"
           fi
