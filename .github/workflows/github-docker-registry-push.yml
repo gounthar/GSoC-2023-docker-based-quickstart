@@ -50,7 +50,7 @@ jobs:
 
       -
         name: Login to GitHub Container Registry
-        if: contains(env.FILES, 'Dockerfile')
+        if: contains(env.files, 'Dockerfile')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -74,7 +74,7 @@ jobs:
           
       -
         name: Build and push a simple bundled instance
-        if: contains(env.FILES, '00_old_one_from_proposal/Dockerfile')
+        if: contains(env.files, '00_old_one_from_proposal/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./00_old_one_from_proposal
@@ -83,7 +83,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:00_old_one_${{ env.BRANCH }}
 
       - name: Build and push a simple jenkins controller
-        if: contains(env.FILES, 'dockerfiles/Dockerfile')
+        if: contains(env.files, 'dockerfiles/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles
@@ -91,7 +91,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:simple_controller_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for maven tutorial
-        if: contains(env.FILES, 'dockerfiles/maven/Dockerfile')
+        if: contains(env.files, 'dockerfiles/maven/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/maven
@@ -99,7 +99,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:maven_agent_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for old maven tutorial
-        if: contains(env.FILES, '03_maven_tutorial/Dockerfile')
+        if: contains(env.files, '03_maven_tutorial/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/maven
@@ -107,7 +107,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:maven_agent_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for python tutorial
-        if: contains(env.FILES, 'dockerfiles/python/Dockerfile')
+        if: contains(env.files, 'dockerfiles/python/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/python
@@ -115,7 +115,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:python_agent_${{ env.BRANCH }}
       - name: Build and push the jenkins agent for node tutorial
-        if: contains(env.FILES, 'dockerfiles/node/Dockerfile')
+        if: contains(env.files, 'dockerfiles/node/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/node
@@ -124,7 +124,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:node_agent_${{ env.BRANCH }}
 
       - name: Build and push the jenkins agent for sidekick tutorial
-        if: contains(env.FILES, 'dockerfiles/sidekick/Dockerfile')
+        if: contains(env.files, 'dockerfiles/sidekick/Dockerfile')
         uses: docker/build-push-action@v5
         with:
           context: ./dockerfiles/sidekick
@@ -133,7 +133,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/jenkinsci-tutorials:sidekick_${{ env.BRANCH }}
 
       - name: Build and push the jenkins agent for multi-branch controller
-        if: contains(env.FILES, '06_multibranch_pipeline/dockerfiles')
+        if: contains(env.files, '06_multibranch_pipeline/dockerfiles')
         uses: docker/build-push-action@v5
         with:
           context: ./06_multibranch_pipeline/dockerfiles/
