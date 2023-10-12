@@ -73,7 +73,7 @@ jobs:
           echo "BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Set repository name to lowercase
-        run: echo "REPO_NAME=$(echo ${{ env.REPO_NAME }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        run: echo "REPO_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
         
       -
         name: Build and push a simple bundled instance
